@@ -1,0 +1,28 @@
+<head>
+    <link href='style/custom.css' rel='stylesheet'>
+    <style>
+        #resume {
+            background-color: var(--paper-color);
+        }
+        #content {
+            padding: 32px;
+        }
+    </style>
+</head>
+<div id="resume">
+    <div id="content">
+        customizable background color tests..
+
+        // simple test template
+        <br>
+        <br>
+        First name: <span id="$firstName" data-id="name">John</span>
+        <br>
+        Last name: <span id="$lastName" data-id="profession"
+                         data-placeholder="the profession you want">Icescreamer</span>
+        <br>
+    </div>
+</div>
+<script>
+    this._theme('--paper-color', '#ffffff');
+</script>

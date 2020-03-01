@@ -1,0 +1,179 @@
+<style>
+    div, span, h1, h2, h3, h4, h5, h6, p {
+        font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: rgba(50, 50, 50, 0.867);
+    }
+
+    p, span {
+        font-size: 15px;
+        line-height: 21px;
+    }
+
+    #picture {
+        margin: 32px;
+        top: 16px;
+        position: relative;
+        min-height: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    #picture img {
+        width: 100%;
+        height: auto;
+        border-radius: 50px;
+    }
+
+    #resume {
+        /* override defaults - this is required as the root element. */
+    }
+
+    #contact {
+        position: absolute;
+        right: 32px;
+        top: 40px;
+        font-size: 13px;
+    }
+
+    .contact-details {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 116px;
+        text-align: right;
+    }
+
+    .header {
+        margin: 16px;
+        position: relative;
+    }
+
+    #title {
+        position: absolute;
+        left: 164px;
+        max-width: 448px;
+        display: flex;
+        flex-direction: column;
+        top: 40px;
+    }
+
+    .name {
+        font-size: 32px;
+        padding: 4px;
+    }
+
+    .profession {
+        font-size: 16px;
+        opacity: 0.76;
+        margin-top: 3px;
+        padding: 4px;
+    }
+
+    section {
+        display: flex;
+    }
+
+    .section-heading {
+        text-transform: uppercase;
+        font-weight: lighter;
+        font-size: 13px;
+        min-width: 164px;
+        user-select: none;
+    }
+
+    .section-content {
+        margin-right: 64px;
+        width: 100%;
+    }
+
+    hr {
+        border: 0.5px solid var(--border-color);
+    }
+
+    .separator {
+        margin-bottom: 32px;
+    }
+
+    p {
+        white-space: pre-line;
+        word-break: break-word;
+    }
+
+    @media print {
+        .break {
+            page-break-before: always;
+            @
+        }
+    }
+
+    #date {
+        display: block;
+        text-align: right;
+        font-size: 10px;
+        height: 0px;
+        margin-bottom: 8px;
+        bottom: 22px;
+        position: absolute;
+        right: 16px;
+    }
+</style>
+<div id="resume">
+    <div class="header">
+        <div id="picture">
+            <img src="data:image/png;base64,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"
+                 data-id="picture"/>
+        </div>
+
+        <div id="title">
+            <span data-id="name" class="name">Name</span>
+            <span data-id="position" class="profession">Position</span>
+        </div>
+
+        <div id="contact">
+            <ul class="contact-details">
+                <li data-id="contact.email">E-mail</li>
+                <li data-id="contact.website">Website</li>
+                <li data-id="contact.phone">Phone</li>
+            </ul>
+        </div>
+
+        <hr class="separator">
+
+        <section>
+            <span class="section-heading">Personal Profile</span>
+            <p class="section-content" data-id="personal.profile">&lt; personal profile &gt;</p>
+        </section>
+
+        <section>
+            <span class="section-heading">Work Experience</span>
+            <p class="section-content" data-id="work.experience">&lt; work experience &gt;</p>
+        </section>
+
+        <section>
+            <span class="section-heading">Key Skills</span>
+            <p class="section-content" data-id="key.skills">&lt; key skills &gt;</p>
+        </section>
+
+        <section class="break">
+            <span class="section-heading">Education</span>
+            <p class="section-content" data-id="education">&lt; education &gt;</p>
+        </section>
+
+        <!--  <section>
+              <span class="section-heading">Flippers</span>
+              <template data-id="flippers">
+                  MyFiveFlippers
+                  <p dasta-id="name">name.1</p>
+                  <p data-id="level">level.1</p>
+              </template>
+          </section>-->
+    </div>
+    <span id="date"></span>
+</div>
+<script>
+    /* scripts run in the context of the renderer after element is attached. */
+    let date = new Date();
+    this.shadowRoot.getElementById('date').innerHTML = `${date.toLocaleDateString()}  ${date.toLocaleTimeString()}`;
+    this._theme('--border-color', '#ff00cc');
+</script>

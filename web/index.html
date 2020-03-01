@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cvie</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <meta name="Description" content="Build resumes like no one else and get hired.">
+    <meta name="Keywords" content="cv resume builder">
+    <meta name="theme-color" content="#004b5c">
+
+    <!-- font is a bit small but gives a good overview. -->
+    <!--<meta name="viewport" content="user-scalable=no">-->
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="style/normalize.css">
+    <link rel="stylesheet" type="text/css" href="style/skeleton.css">
+</head>
+<style>
+    :root {
+        --background-color: #004b5c;
+        --accent: #007587;
+    }
+
+    html {
+        /* prevent touch delays, can be used with user-scalable setting. */
+        touch-action: manipulation;
+        /* hide the ugly tap highlight because its too slow. */
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        overflow: hidden;
+        background-color: var(--background-color)
+    }
+
+    #container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #form-container {
+        min-width: 640px;
+        padding: 32px;
+        max-width: 640px;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        justify-content: space-between;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        z-index: 1;
+        border-right: 2px solid #000000;
+    }
+
+    #render-container {
+        flex-grow: 1;
+        min-width: 640px;
+        background-color: var(--theme);
+        left: 705px;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        top: 0px;
+    }
+
+    #renderer {
+        display: block;
+        max-height: 100vh;
+        overflow-y: scroll;
+    }
+
+    #templates {
+        position: absolute;
+        bottom: 26px;
+        right: 32px;
+        left: 32px;
+        max-height: 146px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        border-top: 1px solid #00000064;
+    }
+
+    hr {
+        margin-top: 0px;
+        margin-bottom: 0;
+        border-bottom: solid 1px #323232;
+    }
+
+    @media print {
+        @page {
+            margin: 0;
+        }
+
+        body {
+            margin: 0cm;
+        }
+
+        #form-container {
+            display: none;
+        }
+
+        #templates {
+            display: none;
+        }
+
+        #render-container {
+            border: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 999;
+            background-color: #fff;
+        }
+
+        #container {
+            /* super important property to prevent the view from getting constrained when printing. */
+            height: max-content;
+        }
+
+        #renderer {
+            /* super important property to prevent the view from getting constrained when printing. */
+            height: max-content;
+            overflow-y: initial;
+        }
+
+        .toggle-container {
+            display: none;
+        }
+    }
+
+    .menu {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    #form-content {
+        margin-top: 16px;
+    }
+
+    @media screen and (max-width: 1580px) {
+        #render-container {
+            display: var(--preview-mode);
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            position: absolute;
+        }
+
+        #form-container {
+            display: var(--edit-mode);
+            left: 0px;
+            right: 0px;
+            margin: auto;
+            margin-top: 28px;
+            margin-bottom: 32px;
+            border: 2px solid #000000;
+        }
+    }
+
+    @media screen and (max-width: 734px) {
+        #render-container {
+            min-width: unset;
+        }
+
+        #form-container {
+            min-width: unset;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    }
+
+    #float-bar {
+        display: flex;
+        position: absolute;
+        bottom: 32px;
+        right: 32px;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        z-index: 100;
+    }
+
+    div[data-tab] {
+        display: none;
+    }
+</style>
+
+<script src="component/renderer.js" type="module"></script>
+<script src="component/form.js" type="module"></script>
+<script src="component/template-thumbnail.js" type="module"></script>
+<script src="component/template-list.js" type="module"></script>
+<script src="component/float-button.js" type="module"></script>
+<script src="component/tab-select.js" type="module"></script>
+<script src="component/dataset-selector.js" type="module"></script>
+<script src="component/style.js" type="module"></script>
+
+<application-style></application-style>
+<body>
+
+<div id="container">
+    <div id="form-container">
+        <tab-select class="menu">
+            <div data-tab="Form" data-active="1" id="form-content" data-event="refresh">
+                <template-form id="form"></template-form>
+                <template-list id="templates"></template-list>
+            </div>
+            <div data-tab="Template">
+                <template-list></template-list>
+            </div>
+            <div data-tab="Data" style="margin-top:16px;">
+                Dataset selector
+                <!--<dataset-selector></dataset-selector>-->
+            </div>
+            <div data-tab="Settings" style="margin-top:16px;">
+                <div style="display: flex;margin-left:32px;margin-right:32px;justify-content: space-between;">
+                    <span style="display:block">Theme</span>
+                    <input type="color" value="#004b5c" id="theme-picker">
+                </div>
+                <div style="display: flex;margin-left:32px;margin-right:32px;justify-content: space-between;">
+                    <span style="display:block">Accent</span>
+                    <input type="color" value="#007587" id="accent-picker">
+                </div>
+                <script>
+                    window.addEventListener('DOMContentLoaded', () => {
+                        let theme = document.querySelector('#theme-picker');
+                        let accent = document.querySelector('#accent-picker');
+                        let update = () => {
+                            this.setProperty('--theme', theme.value);
+                            this.setProperty('--accent', accent.value);
+                            document.querySelector('meta[name="theme-color"]').setAttribute("content", theme.value);
+                        };
+                        [theme, accent].forEach(input => {
+                            input.addEventListener('input', (e) => {
+                                update();
+                            });
+                        });
+                        update()
+                    });
+                </script>
+            </div>
+        </tab-select>
+    </div>
+
+    <div id="render-container">
+        <template-render id="renderer"></template-render>
+    </div>
+
+    <div id="float-bar">
+        <float-button action="preview"></float-button>
+        <float-button action="edit"></float-button>
+        <float-button action="print"></float-button>
+    </div>
+</div>
+
+<script>
+    function $(query) {
+        return document.querySelector(query);
+    }
+
+    function setTemplate(e) {
+        renderer.retrieve(e.template, variables => {
+            form.updateFields(variables);
+        });
+    }
+
+    function setProperty(property, value) {
+        document.documentElement.style.setProperty(property, value);
+    }
+
+    function preview(e) {
+        setProperty('--edit-mode', 'none');
+        setProperty('--preview-mode', 'block');
+    }
+
+    function edit(e) {
+        setProperty('--edit-mode', 'block');
+        setProperty('--preview-mode', 'none');
+        form.edit(e);
+    }
+
+    window.addEventListener('keydown', event => {
+        if (event.key === 'Enter' && event.ctrlKey) {
+            this.preview();
+        }
+        if (event.key === 'i' && event.ctrlKey) {
+            this.edit();
+        }
+    });
+
+    window.addEventListener('edit', () => this.edit());
+    window.addEventListener('preview', preview);
+    window.addEventListener('print', print);
+
+    window.addEventListener('DOMContentLoaded', () => {
+        window.renderer = $(`#renderer`);
+        window.form = $(`#form`);
+
+        this.setTemplate(document.getElementsByTagName('template-thumbnail')[2]);
+        this.edit();
+
+        form.onDatasetChange(() => {
+            form.updateFields(renderer.refresh.bind(renderer)());
+        });
+        form.onFieldUpdate(renderer.notify.bind(renderer));
+        renderer.onEditRequest((e) => {
+            document.querySelector('tab-select').select('Form', true);
+            this.edit(e);
+        });
+    });
+
+    window.addEventListener('refresh', () => {
+        form.updateFields();
+    });
+
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service_worker.js')
+                .then((registration) => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, (err) => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.prompt();
+        });
+    }
+</script>
+</body>
+</html>

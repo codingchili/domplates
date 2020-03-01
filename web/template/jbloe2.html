@@ -1,0 +1,300 @@
+<body>
+>
+<style>
+    div, span, h1, h2, h3, h4, h5, h6, p {
+        font-size: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #top {
+        background: #181818;
+        font-family: 'Lato', helvetica, arial, sans-serif;
+        font-size: 16px;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    p {
+        font-size: 1em;
+        line-height: 1.4em;
+        margin-bottom: 24px;
+        color: #323232DD;
+    }
+
+    #cv {
+        width: 90%;
+        max-width: 800px;
+        background: #ffffff;
+        margin: 28px auto;
+        margin-top: 6px;
+    }
+
+    .mainDetails {
+        padding: 25px 35px;
+        border-bottom: 2px solid var(--border-color);
+        background: #ffffff;
+    }
+
+    #name h1 {
+        font-size: 2.5em;
+        font-weight: 700;
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        margin-bottom: -6px;
+    }
+
+    #name h2 {
+        font-size: 2em;
+        margin-left: 2px;
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+    }
+
+    #mainArea {
+        padding: 0 40px;
+    }
+
+    #headshot {
+        width: 12.5%;
+        float: left;
+        margin-right: 30px;
+    }
+
+    #headshot img {
+        width: 100%;
+        height: auto;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+    }
+
+    #name {
+        float: left;
+    }
+
+    #contactDetails {
+        float: right;
+    }
+
+    #contactDetails ul {
+        list-style-type: none;
+        font-size: 0.9em;
+        margin-top: 2px;
+    }
+
+    #contactDetails ul li {
+        margin-bottom: 3px;
+        color: #444;
+    }
+
+    #contactDetails ul li a, a[href^=tel] {
+        color: #444;
+        text-decoration: none;
+    }
+
+    #contactDetails ul li a:hover {
+        color: #00798a;
+    }
+
+
+    section {
+        border-top: 1px solid #dedede;
+        padding: 20px 0 0;
+    }
+
+    section:first-child {
+        border-top: 0;
+    }
+
+    section:last-child {
+        padding: 20px 0 10px;
+    }
+
+    .sectionTitle {
+        float: left;
+        width: 25%;
+    }
+
+    .sectionContent {
+        float: right;
+        width: 72.5%;
+    }
+
+    .sectionTitle h1 {
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        font-style: italic;
+        font-size: 1.5em;
+        color: var(--accent-color);
+    }
+
+    .sectionContent h2 {
+        font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+        font-size: 1.5em;
+        margin-bottom: -2px;
+    }
+
+    .subDetails {
+        font-size: 0.8em;
+        font-style: italic;
+        margin-bottom: 3px;
+    }
+
+    .keySkills {
+        list-style-type: none;
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+        margin-bottom: 20px;
+        font-size: 1em;
+        color: #444;
+    }
+
+    .keySkills ul li {
+        margin-bottom: 3px;
+    }
+
+    @media print {
+        #cv {
+            width: 100%;
+        }
+    }
+</style>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body id="top">
+<div id="cv" class="instaFade">
+    <div class="mainDetails">
+        <div id="headshot" class="quickFade">
+            <img id="header" src="https://www.myperfectday.se/images/normal/folieballong-unicornhead.jpg" data-id="picture"/>
+        </div>
+
+        <div id="name">
+            <h1 data-id="name">First Name</h1>
+            <h2 style="opacity:0.64; font-size:16px;" data-id="position">Job Title</h2>
+        </div>
+
+        <div id="contactDetails" class="quickFade delayFour">
+            <ul>
+                <li><a href="mailto:joe@bloggs.com" target="_blank" data-id="contact.email">joe@bloggs.com</a></li>
+                <li><a href="http://www.bloggs.com" data-id="contact.website">www.bloggs.com</a></li>
+                <li data-id="contact.phone">073 755 72 00</li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="mainArea" class="quickFade delayFive">
+        <section>
+            <article>
+                <div class="sectionTitle">
+                    <h1>Personal Profile</h1>
+                </div>
+
+                <div class="sectionContent">
+                    <p template="textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus,
+                        interdum at
+                        scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non
+                        consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum
+                        porttitor.</p>
+                </div>
+            </article>
+            <div class="clear"></div>
+        </section>
+
+
+        <section>
+            <div class="sectionTitle">
+                <h1>Work Experience</h1>
+            </div>
+
+            <div class="sectionContent">
+                <article>
+                    <h2>Job Title at Company</h2>
+                    <p class="subDetails">April 2011 - Present</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus
+                        hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien
+                        quis libero interdum porttitor.</p>
+                </article>
+
+                <article>
+                    <h2>Job Title at Company</h2>
+                    <p class="subDetails">Janruary 2007 - March 2011</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus
+                        hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien
+                        quis libero interdum porttitor.</p>
+                </article>
+
+                <article>
+                    <h2>Job Title at Company</h2>
+                    <p class="subDetails">October 2004 - December 2006</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus
+                        hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien
+                        quis libero interdum porttitor.</p>
+                </article>
+            </div>
+            <div class="clear"></div>
+        </section>
+
+
+        <section>
+            <div class="sectionTitle">
+                <h1>Key Skills</h1>
+            </div>
+
+            <div class="sectionContent">
+                <ul class="keySkills" template>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                    <li>A Key Skill</li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </section>
+
+
+        <section>
+            <div class="sectionTitle">
+                <h1>Education</h1>
+            </div>
+
+            <div class="sectionContent">
+                <article>
+                    <h2>College/University</h2>
+                    <p class="subDetails">Qualification</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus
+                        hendrerit. Curabitur non consequat enim.</p>
+                </article>
+
+                <article>
+                    <h2>College/University</h2>
+                    <p class="subDetails">Qualification</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus
+                        hendrerit. Curabitur non consequat enim.</p>
+                </article>
+            </div>
+            <div class="clear"></div>
+        </section>
+
+        <span style="display: block; width: 100%; text-align: center;" id="date"></span>
+    </div>
+</div>
+</body>
+
+<script>
+    /* scripts run in the context of the renderer after element is attached. */
+    //this.shadowRoot.getElementById('date').innerHTML = new Date().toString();
+
+    this._theme('--accent-color', '#ff00cc');
+    this._theme('--border-color', '#ff00cc');
+</script>
