@@ -87,4 +87,4 @@
 - [x] make it into a pwa
 
 
-![v5.png](./v5.png)
+![v5.png](./v5.PNG)
