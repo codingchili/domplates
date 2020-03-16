@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>cvie</title>
+    <title>Plates</title>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <meta name="Description" content="Build resumes like no one else and get hired.">
@@ -21,7 +21,7 @@
 </head>
 <style>
     :root {
-        --background-color: #004b5c;
+        --background-color: #000;
         --accent: #007587;
     }
 
@@ -199,10 +199,12 @@
 <script src="component/form.js" type="module"></script>
 <script src="component/template-thumbnail.js" type="module"></script>
 <script src="component/template-list.js" type="module"></script>
+<script src="component/template-editor.js" type="module"></script>
 <script src="component/float-button.js" type="module"></script>
 <script src="component/tab-select.js" type="module"></script>
 <script src="component/dataset-selector.js" type="module"></script>
 <script src="component/style.js" type="module"></script>
+<script src="component/app-settings.js" type="module"></script>
 
 <application-style></application-style>
 <body>
@@ -216,37 +218,14 @@
             </div>
             <div data-tab="Template">
                 <template-list></template-list>
+                <template-editor></template-editor>
             </div>
             <div data-tab="Data" style="margin-top:16px;">
                 Dataset selector
                 <!--<dataset-selector></dataset-selector>-->
             </div>
             <div data-tab="Settings" style="margin-top:16px;">
-                <div style="display: flex;margin-left:32px;margin-right:32px;justify-content: space-between;">
-                    <span style="display:block">Theme</span>
-                    <input type="color" value="#004b5c" id="theme-picker">
-                </div>
-                <div style="display: flex;margin-left:32px;margin-right:32px;justify-content: space-between;">
-                    <span style="display:block">Accent</span>
-                    <input type="color" value="#007587" id="accent-picker">
-                </div>
-                <script>
-                    window.addEventListener('DOMContentLoaded', () => {
-                        let theme = document.querySelector('#theme-picker');
-                        let accent = document.querySelector('#accent-picker');
-                        let update = () => {
-                            this.setProperty('--theme', theme.value);
-                            this.setProperty('--accent', accent.value);
-                            document.querySelector('meta[name="theme-color"]').setAttribute("content", theme.value);
-                        };
-                        [theme, accent].forEach(input => {
-                            input.addEventListener('input', (e) => {
-                                update();
-                            });
-                        });
-                        update()
-                    });
-                </script>
+                <app-settings></app-settings>
             </div>
         </tab-select>
     </div>
@@ -304,8 +283,6 @@
     window.addEventListener('DOMContentLoaded', () => {
         window.renderer = $(`#renderer`);
         window.form = $(`#form`);
-
-        this.setTemplate(document.getElementsByTagName('template-thumbnail')[2]);
         this.edit();
 
         form.onDatasetChange(() => {

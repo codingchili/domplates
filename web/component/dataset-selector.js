@@ -35,7 +35,7 @@ export default class DatasetSelector extends HTMLElement {
                         text-align: center;
                         background-color: var(--theme);
                         user-select: none;
-                        transition: background-color 0.2s;
+                        transition: background-color var(--background-transition);
                     }
                     .selected {
                         background-color: var(--accent);

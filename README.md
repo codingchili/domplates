@@ -49,6 +49,8 @@
 - [ ] a pay- [ ]then- [ ]install.
 - [ ] browse templates + install templates locally?
     - [ ] upload user defined templates? what about virus scripts?
+- [ ] mark template as favorite
+- [ ] live temtplate editor
 
 - [x] remove from store on dataset remove
 - [x] split scroll per view

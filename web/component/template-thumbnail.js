@@ -15,12 +15,12 @@ export class TemplateThumbnail extends HTMLElement {
                     cursor: pointer;
                     box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
                 }
-                .thumbnail:hover {
-                    opacity: 0.64;
-                    transition: opacity 0.4s;
+                .thumbnail:hover .template-name {
+                    background-color: var(--accent); 
                 }
                 .template-name {
                     background-color: var(--theme);
+                    transition: background-color var(--background-transition);
                     text-transform: uppercase;
                     opacity: 0.999;
                     text-align: center;
@@ -35,6 +35,9 @@ export class TemplateThumbnail extends HTMLElement {
                     width: 96px;
                     height: 96px;
                 }
+                .active {
+                    color: var(--accent);
+                }
             </style>
 
             <div class="thumbnail">
@@ -48,6 +51,15 @@ export class TemplateThumbnail extends HTMLElement {
 
     getTemplate() {
         return this.template;
+    }
+
+    setActive(active) {
+        let name = this.querySelector('.template-name');
+        if (active) {
+            name.classList.add('active')
+        } else {
+            name.classList.remove('active');
+        }
     }
 }
 

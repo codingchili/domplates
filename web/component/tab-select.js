@@ -44,7 +44,7 @@ export default class TabSelect extends HTMLElement {
                     cursor: pointer;
                     flex-grow: 1;
                     user-select: none;
-                    transition: background-color 0.2s;
+                    transition: background-color var(--background-transition);
                 }
                 .tab-item:hover {
                     background-color: var(--accent);

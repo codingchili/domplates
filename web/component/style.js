@@ -11,6 +11,10 @@ export default class ApplicationStyle extends HTMLElement {
     static get template() {
         return `
         <style>
+            :root {
+                --background-transition: 0.32s;
+            }
+        
             body, html {
                 overflow-x: hidden;
                 background-color: var(--theme);
@@ -40,29 +44,30 @@ export default class ApplicationStyle extends HTMLElement {
             }
             
             a:link {
-                color: #00798a;
+                color: var(--accent);
                 text-decoration: none;
             }
             
             a:visited {
-                color: #00798a;
+                color: var(--accent);
             }
             
             a:hover {
-                color: #005263;
+                color: var(--accent);
+                opacity: 0.5;
             }
             
             a:active {
-                color: #00798a;
+                var(--accent);
             }
             
             ::selection {
-                background: #00798a; /* WebKit/Blink Browsers */
+                background: var(--accent); /* WebKit/Blink Browsers */
                 color: #ffffff;
             }
             
             ::-moz-selection {
-                background: #00798a; /* Gecko Browsers */
+                background: var(--accent);; /* Gecko Browsers */
                 color: #ffffff;
             }
             
@@ -78,12 +83,13 @@ export default class ApplicationStyle extends HTMLElement {
             
             /* Handle */
             ::-webkit-scrollbar-thumb {
-                background: #00798a;
+                background: var(--accent);
             }
             
             /* Handle on hover */
             ::-webkit-scrollbar-thumb:hover {
-                background: #00c7cb;
+                background: var(--accent);
+                opacity: 0.5;
             }
             
             textarea {
@@ -124,12 +130,12 @@ export default class ApplicationStyle extends HTMLElement {
             p[data-id]:hover, span[data-id]:hover, li[data-id]:hover, div[data-id]:hover, img[data-id]:hover {
                 background-color: var(--accent);
                 color: #f5f5f5 !important;
-                transition: background-color 0.4s;
+                transition: background-color var(--background-transition);
             }
             
             .tooltip {
                 position: absolute;
-                background-color: #005263;
+                background-color: #000;
                 color: #ffffffff;
                 padding: 6px;
                 border-radius: 4px;
@@ -225,8 +231,8 @@ export default class ApplicationStyle extends HTMLElement {
             
             .icon:hover {
                 cursor: pointer;
-                background-color: rgba(0, 121, 138, 0.15);
-                transition: background-color 0.4s;
+                background-color: var(--accent);
+                transition: background-color var(--background-transition);
                 border-radius: 12px;
             }
             </style>
