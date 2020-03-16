@@ -218,7 +218,9 @@
             </div>
             <div data-tab="Template">
                 <template-list></template-list>
-                <template-editor></template-editor>
+            </div>
+            <div data-tab="Editor" data-event="activate-editor">
+                <template-editor id="editor"></template-editor>
             </div>
             <div data-tab="Data" style="margin-top:16px;">
                 Dataset selector
@@ -247,8 +249,9 @@
     }
 
     function setTemplate(e) {
-        renderer.retrieve(e.template, variables => {
+        renderer.retrieve(e.template, (variables, template) => {
             form.updateFields(variables);
+            editor.setTemplate(template);
         });
     }
 
@@ -283,6 +286,14 @@
     window.addEventListener('DOMContentLoaded', () => {
         window.renderer = $(`#renderer`);
         window.form = $(`#form`);
+        window.editor = $(`#editor`);
+
+        editor.addEventListener('template-update', (event) => {
+            renderer.setTemplateText(event.detail, (variables, template) => {
+                form.updateFields(variables);
+            });
+        });
+
         this.edit();
 
         form.onDatasetChange(() => {

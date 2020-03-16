@@ -41,12 +41,18 @@ export class TemplateRenderer extends HTMLElement {
                     response.text().then((data) => {
                         this.template = data;
                         this.refresh();
-                        callback(this.elements);
+                        callback(this.elements, this.template);
                     });
                 }
             ).catch((err) => {
                 console.log(err);
             });
+    }
+
+    setTemplateText(template, callback) {
+        this.template = template;
+        this.refresh();
+        callback(this.elements, this.template);
     }
 
     refresh() {

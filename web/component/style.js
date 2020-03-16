@@ -92,6 +92,22 @@ export default class ApplicationStyle extends HTMLElement {
                 opacity: 0.5;
             }
             
+            .button {
+                color: #ffffff;
+                height: 48px;
+                padding: 4px;
+                text-align: center;
+                background-color: var(--theme);
+                user-select: none;
+                transition: background-color var(--background-transition);
+                font-size: 12px;
+            }
+            
+            .button:hover {
+                background-color: var(--accent);
+                color: #fff;
+            }
+            
             textarea {
                 min-height: unset;
             }

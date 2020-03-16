@@ -106,6 +106,9 @@ export default class TabSelect extends HTMLElement {
 
         if (this.content.dataset.event && !skipevents) {
             window.dispatchEvent(new Event(this.content.dataset.event));
+            console.log('pushed event ' + this.content.dataset.event);
+        } else {
+            console.log('event skipped ' + this.content.dataset.event);
         }
     }
 
