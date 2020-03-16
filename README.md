@@ -2,7 +2,7 @@
 Domplates is a templating toolkit for making DOM-based templates in HTML, CSS and Javascript. 
 The default export format is .pdf using the print to pdf feature present in most browsers. 
 
-![v5.png](./screenshot/domplates_v6.png)
+![v5.png](./screenshot/domplates_v7.png)
 
 ### Use cases
 Reusable templates that can be used for
