@@ -205,6 +205,7 @@
 <script src="component/dataset-selector.js" type="module"></script>
 <script src="component/style.js" type="module"></script>
 <script src="component/app-settings.js" type="module"></script>
+<script src="component/export-dialog.js" type="module"></script>
 
 <application-style></application-style>
 <body>
@@ -236,9 +237,12 @@
         <template-render id="renderer"></template-render>
     </div>
 
+    <export-dialog id="export"></export-dialog>
+
     <div id="float-bar">
         <float-button action="preview"></float-button>
         <float-button action="edit"></float-button>
+        <!-- trigger output chooser -->
         <float-button action="print"></float-button>
     </div>
 </div>
@@ -281,7 +285,11 @@
 
     window.addEventListener('edit', () => this.edit());
     window.addEventListener('preview', preview);
-    window.addEventListener('print', print);
+    window.addEventListener('print', () => {
+        let exportDialog = document.querySelector('#export');
+        exportDialog.setRenderer(this.renderer);
+        exportDialog.show();
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
         window.renderer = $(`#renderer`);
