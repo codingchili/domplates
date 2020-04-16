@@ -14,7 +14,7 @@ export default class ApplicationStyle extends HTMLElement {
             :root {
                 --background-transition: 0.32s;
             }
-        
+            
             body, html {
                 overflow-x: hidden;
                 background-color: var(--theme);

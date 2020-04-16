@@ -119,8 +119,8 @@ export class TemplateEditor extends HTMLElement {
                     document.execCommand('insertText', false /*no UI*/, '    ');
                     e.preventDefault();
                 }
-                // only trigger re-evaluation if input is a letter.
-                if (e.key.length === 1) {
+                // skip re-evaluation for keyboard navigation
+                if (!e.key.includes('Arrow')) {
                     setTimeout(() => {
                         worker.postMessage(this.input.value);
                         this.dispatchEvent(new CustomEvent('template-update', {detail: this.input.value}));

@@ -1,4 +1,4 @@
-import FormTextarea from "./form-textarea";
+let style = {};
 
 let StyleElement = class StyleElement {
     constructor(shadow, variable, initial) {
@@ -8,6 +8,7 @@ let StyleElement = class StyleElement {
         this.update(initial);
     }
     update(value) {
+        style[this.variable] = value;
         this.shadow.host.style.setProperty(this.variable, value);
     }
 };
@@ -68,6 +69,10 @@ export class TemplateRenderer extends HTMLElement {
             this._addElement(element);
         }
         return this.elements;
+    }
+
+    html() {
+        return this.shadowRoot.innerHTML;
     }
 
     _generateId(element) {
